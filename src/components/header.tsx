@@ -1,61 +1,60 @@
-"use client"
+"use client";
 
 import React from "react";
-import Image from 'next/image';
+import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { Button } from "./ui/button";
-import { Bell, Search } from 'lucide-react';
-import { DesktopMenu } from "./desktop-menu";
-import MobileMenu from "./mobile-menu";
+import { Bell } from "lucide-react";
 import ThemeSwitcher from "./theme-switcher";
+import Search from "./search";
+import { Separator } from "./ui/separator";
+import { ThemeChanger } from "./theme-changer";
 
-export default function Header() {
+const Header = () => {
     const router = useRouter();
-    const home =() => {
+
+    const navigateHome = () => {
         router.push("/");
-    }   
+    };
+
     return (
-        <header className="fixed top-0 left-0 right-0 w-full h-16 border-b border-border border-dashed bg-background backdrop-blur supports-[backdrop-filter]:bg-background/70">
-            <div className="flex flex-col justify-center items-center align-middle w-full h-full px-4">
-                <div className="flex flex-row relative gap-x-4 justify-center items-center align-middle w-full h-full">
-                    {/* MOBILE */}
-                    <div className="flex lg:hidden">
-                        <Image onClick={home} src="/next.svg" width={96} height={32} alt="SA" />
+        <header className="fixed z-20 top-0 left-0 right-0 w-full h-16 border-b border-border border-dashed rounded-b-2xl bg-surface backdrop-blur supports-[backdrop-filter]:bg-surface/80">
+            <div className="flex items-center justify-between w-full h-full px-6">
+                {/* MOBILE */}
+                <div className="flex">
+                    <Image onClick={navigateHome} src="/next.svg" width={96} height={32} alt="Next.js" />
+                </div>
+
+                <div className="flex items-center gap-x-2 w-auto h-auto">
+                    {/* Theme Switcher */}
+                    <div className="hidden lg:flex">
+                        <ThemeSwitcher />
                     </div>
 
-                    {/* DESKTOP */}
-                    <div className="hidden lg:flex gap-x-4 justify-between">
-                        <Image onClick={home} src="/next.svg" width={96} height={32} alt="Shopivo" />
-                        <DesktopMenu />
+                    {/* Vertical Divider */}
+                    <div className="hidden lg:flex w-auto h-4">
+                        <Separator orientation="vertical" />
                     </div>
-                    <div className="flex flex-1 justify-between" />
-                    <div className="flex align-middle gap-x-2">
-                        <div className="hidden lg:flex">
-                            <ThemeSwitcher />
-                        </div>
-                        <div className="hidden lg:flex align-middle justify-center items-center"> 
-                            <hr className="w-[1px] h-6 bg-border border-solid border-border" /> {/* Vertical Divider */}
-                        </div>
-                        <Button variant="outlined" size="icon">
-                            <Search />
-                        </Button>
-                        <Button variant="outlined" size="icon">
-                            <Bell/>
-                        </Button>
-                        <div className="hidden lg:flex">
-                            <Avatar className="w-8 h-8 border border-border rounded-md">
-                                <AvatarImage src="https://github.com/sheikh-abdul-aziz.png" />
-                                <AvatarFallback>SA</AvatarFallback>
-                            </Avatar>
-                        </div>
-                        {/* MOBILE */}
-                        <div className="flex flex-col lg:hidden gap-8 align-middle justify-between">
-                            <MobileMenu /> 
-                        </div>
+
+                    {/* Search and Notifications */}
+                    <Search />
+                    <Button variant="outlined" size="icon">
+                        <Bell />
+                    </Button>
+
+                    {/* Vertical Divider */}
+                    <div className="flex lg:hidden w-auto h-4">
+                        <Separator orientation="vertical" />
+                    </div>
+
+                    {/* Theme Changer */}
+                    <div className="flex lg:hidden">
+                        <ThemeChanger />
                     </div>
                 </div>
             </div>
-        </header>    
-    )
-}
+        </header>
+    );
+};
+
+export default Header;

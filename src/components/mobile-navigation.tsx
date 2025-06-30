@@ -1,6 +1,7 @@
 "use client";
 
-import { ChevronRight, type LucideIcon } from "lucide-react";
+import { ChevronRight } from "lucide-react";
+import { type TablerIcon } from "@tabler/icons-react";
 
 import {
     Collapsible,
@@ -29,12 +30,11 @@ export function MobileNavigation({
     itemFirst: {
         title: string;
         url: string;
-        icon?: LucideIcon;
     }[];
     itemSecond: {
         title: string;
         url: string;
-        icon?: LucideIcon;
+        icon?: TablerIcon;
         isActive?: boolean;
         items?: {
             title: string;
@@ -45,22 +45,21 @@ export function MobileNavigation({
     return (
         <MobileMenuProvider>
             <MobileMenuGroup>
-                 {/* General Section */}
-                 <MobileMenuGroupLabel>General</MobileMenuGroupLabel>
+                {/* General Section */}
+                <MobileMenuGroupLabel>General</MobileMenuGroupLabel>
                 <MobileMenu className="group-data-[collapsible=icon]:hidden">
                     {itemFirst.map((item) => (
                         <MobileMenuItem key={item.title}>
                             <MobileMenuButton asChild>
                                 <Link href={item.url}>
-                                    {item.icon && <item.icon />}
                                     <Label>{item.title}</Label>
                                 </Link>
                             </MobileMenuButton>
                         </MobileMenuItem>
                     ))}
                 </MobileMenu>
-                
-                <Separator orientation="horizontal" className="my-3"/>
+
+                <Separator orientation="horizontal" className="my-3" />
 
                 {/* Resources Section */}
                 <MobileMenuGroupLabel>Resources</MobileMenuGroupLabel>
@@ -70,7 +69,7 @@ export function MobileNavigation({
                             <MobileMenuItem>
                                 <CollapsibleTrigger asChild>
                                     <MobileMenuButton tooltip={item.title}>
-                                        {item.icon && <item.icon />}
+                                        {item.icon && <item.icon/>}
                                         <Label>{item.title}</Label>
                                         <ChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
                                     </MobileMenuButton>

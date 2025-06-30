@@ -33,32 +33,17 @@ interface ShinyButtonProps extends Omit<React.HTMLAttributes<HTMLElement>, keyof
 export const ShinyButton = React.forwardRef<HTMLButtonElement, ShinyButtonProps>(
     ({ children, className, ...props }, ref) => {
         return (
-            <motion.button
-                ref={ref}
-                className={cn(
-                    "relative z-10 inline-flex items-center justify-center text-center align-middle border border-border bg-background rounded-full shadow-none hover:bg-accent hover:text-accent-foreground h-7 gap-2 px-3 py-1 text-sm font-semibold uppercase text-foreground/80 backdrop-blur-lg transition-shadow duration-300 ease-in-out",
-                    className
-                )}
+            <motion.button ref={ref} className={cn("inline-flex items-center justify-center text-center align-middle border border-border bg-background rounded-full shadow-none hover:bg-accent hover:text-accent-foreground h-7 gap-2 px-3 py-1 transition-shadow duration-300 ease-in-out", className )}
+            style={{ overflow: "hidden" }}
                 {...animationProps}
-                {...props}
-            >
-                <span
-                    className="flex items-center justify-center text-center gap-1 text-sm uppercase tracking-wide text-foreground/80 font-semibold"
-                    style={{
-                        maskImage:
-                            "linear-gradient(-75deg, var(--primary) calc(var(--x) + 20%), transparent calc(var(--x) + 30%), var(--primary) calc(var(--x) + 100%))",
-                    }}
-                >
+                {...props}>
+                <span className="flex items-center justify-center align-middle text-center gap-1 text-sm uppercase tracking-wide text-foreground/80 font-semibold"
+                    style={{ maskImage: "linear-gradient(-75deg, var(--primary) calc(var(--x) + 20%), transparent calc(var(--x) + 30%), var(--primary) calc(var(--x) + 100%))",}}>
                     {children}
                 </span>
-                <span
-                    style={{
-                        mask: "linear-gradient(rgb(0,0,0), rgb(0,0,0)) content-box, linear-gradient(rgb(0,0,0), rgb(0,0,0))",
-                        maskComposite: "exclude",
-						zIndex: 0,
-                    }}
-                    className="inset-0 block rounded-[inherit] bg-[linear-gradient(-75deg,var(--primary)/10%_calc(var(--x)+20%),var(--primary)/50%_calc(var(--x)+25%),var(--primary)/10%_calc(var(--x)+100%))] p-px"
-                ></span>
+                <span style={{ mask: "linear-gradient(rgb(0,0,0), rgb(0,0,0)) content-box, linear-gradient(rgb(0,0,0), rgb(0,0,0))", maskComposite: "exclude",}}
+                    className="inset-0 block rounded-[inherit] bg-[linear-gradient(-75deg,var(--primary)/10%_calc(var(--x)+20%),var(--primary)/50%_calc(var(--x)+25%),var(--primary)/10%_calc(var(--x)+100%))] p-px">
+                </span>  
             </motion.button>
         );
     }

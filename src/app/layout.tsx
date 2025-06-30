@@ -4,6 +4,7 @@ import { Host_Grotesk, Poppins } from "next/font/google";
 import { ThemeProvider } from "@/components/ui/theme-provider";
 import Footer from "@/components/footer";
 import Header from "@/components/header";
+import { Floating_Dock } from "@/components/floating-dock";
 
 export const fontLabel = Poppins({
 	subsets: ["latin"],
@@ -28,9 +29,10 @@ export default function RootLayout({children,}: {children: React.ReactNode;}) {
 	return (
 		<html lang="en" suppressHydrationWarning suppressContentEditableWarning>
 			<body className={`${fontDisplay.className} antialiased `}>
-				<ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+				<ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
 					<Header />
 					{children}
+					<Floating_Dock />
 					<Footer />
 				</ThemeProvider>
 			</body>

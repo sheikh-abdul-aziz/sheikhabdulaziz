@@ -1,43 +1,80 @@
-"use client"
+"use client";
 
 import React from "react";
 import { useRouter } from "next/navigation";
-import { Sparkles, ChevronRight, Zap } from 'lucide-react';
+import {
+    Avatar,
+    AvatarFallback,
+    AvatarImage
+} from "./ui/avatar";
 import { Button } from "./ui/button";
-import { ShinyButton } from "./ui/shiny-button";
+import {
+    IconBrandInstagram,
+    IconBrandThreads,
+    IconBrandX,
+    IconBrandMedium,
+    IconMail,
+    IconBrandDribbble,
+    IconSparkles,
+    IconChevronRight
+} from "@tabler/icons-react";
+import Link from "next/link";
 
 export default function Hero() {
 
     const router = useRouter();
 
-    const shop = () => { router.push("/shop"); }
+    const navigateTo: (path: string) => void = (path) => router.push(path);
 
-    const about = () => { router.push("/about"); }
+    const socialLinks = [
+        { href: "https://www.instagram.com/shaykhabdulazeez", icon: <IconBrandInstagram /> },
+        { href: "https://www.threads.net/@shaykhabdulazeez", icon: <IconBrandThreads /> },
+        { href: "https://x.com/shekhabdulazeez", icon: <IconBrandX /> },
+        { href: "https://medium.com/@sheikhabdulaziz", icon: <IconBrandMedium /> },
+        { href: "https://dribbble.com/sheikhabdulaziz", icon: <IconBrandDribbble /> },
+        { href: "mailto:hello@entrepreneuraziz.com", icon: <IconMail /> }
+    ];
 
     return (
-        <div className="w-full h-auto px-0 py-8">
-            <div className="w-full h-auto px-8 py-0">
-                <div className="flex flex-col justify-center items-center space-y-3 mt-16 left-0 right-0">
-                    <div className="flex flex-row justify-center items-center relative z-0">
-                        <ShinyButton>
-                            <Zap size={16} />
-                            Pioneering the Future
-                        </ShinyButton>
-                    </div>
-                    <h1 className="inline-block align-middle py-1.5 text-4xl sm:text-5xl md:text-6xl lg:text7xl font-semibold text-center text-transparent tracking-wide md:tracking-wide lg:tracking-wide bg-gradient-to-tl from-from via-via to-to bg-clip-text">Passionate Frontend Developer, and Web Designer.</h1>
-                    <p className="inline-block align-middle text-sm sm:text-base md:text-md lg:text-lg font-normal text-center text-muted-foreground lg:max-w-2xl tracking-normal">Hi, I&apos;m Sheikh Abdul Aziz — An Entrepreneur, Frontend Developer & Web Designer — helping businesses grow with elegant design and powerful development.</p>
-                    <div className="flex flex-row justify-center items-center gap-x-4 md:gap-x-6">
-                        <Button onClick={shop} variant="filled" size="default">
-                            <Sparkles />
-                            Let&apos;s Explore
-                        </Button>
-                        <Button onClick={about} variant="outlined" size="default">
-                            Learn More
-                            <ChevronRight />
-                        </Button>
+        <div className="w-full h-auto px-6 py-8 bg-surface text-foreground rounded-b-2xl">
+            <div className="flex flex-col justify-start items-start mt-24">
+                <div className="flex flex-col justify-start items-start">
+                    <div className="flex flex-col justify-start items-start gap-y-2">
+                        <div className="flex flex-row justify-start items-center gap-x-4">
+                            <Avatar className="w-18 h-18 border border-border rounded-xl">
+                                <AvatarImage src="https://github.com/sheikh-abdul-aziz.png" />
+                                <AvatarFallback>SA</AvatarFallback>
+                            </Avatar>
+                            <div className="flex flex-col justify-start items-start gap-x-4">
+                                <h2 className="text-3xl font-bold">Sheikh Abdul Aziz</h2>
+                                <h3 className="text-sm text-muted-foreground">Frontend Developer & UI/UX Designer</h3>
+                            </div>
+                        </div>
+                        <div className="flex flex-row justify-start items-center gap-x-4">
+                            <p className="text-sm text-foreground">Say Hello on:</p>
+                            <div className="flex flex-wrap justify-center md:justify-start gap-2">
+                                {socialLinks.map(({ href, icon }) => (
+                                    <Link key={href} href={href}>
+                                        <Button variant="outlined" size="social" radius="full" className="text-muted-foreground hover:text-foreground">{icon}</Button>
+                                    </Link>
+                                ))}
+                            </div>
+                        </div>
+                        <p className="text-sm text-muted-foreground max-w-lg">
+                            Hi, I&apos;m Sheikh Abdul Aziz — An Entrepreneur, Frontend Developer & UI/UX Designer — helping businesses grow with elegant design and powerful development.
+                        </p>
+
+                        <div className="flex flex-row justify-start items-center gap-x-4">
+                            <Button onClick={() => navigateTo("/shop")} variant="filled" size="default" radius="large">
+                                <IconSparkles /> Let&apos;s Explore
+                            </Button>
+                            <Button onClick={() => navigateTo("/about")} variant="tonal" size="default" radius="large">
+                                Learn More <IconChevronRight />
+                            </Button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    )
+        </div >
+    );
 }

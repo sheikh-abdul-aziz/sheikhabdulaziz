@@ -12,7 +12,7 @@ export default function AccordionLayout() {
     return (
         <div className="w-full h-auto px-0 py-6">
             <div className="w-full h-auto px-6 py-0">
-                <div className="flex flex-col w-full h-full">
+                <div className="flex flex-col w-full h-full bg-surface rounded-2xl px-6">
                     <Accordion type="single" collapsible>
                         <AccordionItem value="item-1">
                             <AccordionTrigger>Is it accessible?</AccordionTrigger>

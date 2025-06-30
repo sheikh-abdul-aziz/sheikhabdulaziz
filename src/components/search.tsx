@@ -5,6 +5,7 @@ import {
 	Calculator,
 	Calendar,
 	CreditCard,
+	SearchIcon,
 	Settings,
 	Smile,
 	User,
@@ -20,6 +21,7 @@ import {
 	CommandSeparator,
 	CommandShortcut,
 } from "./ui/command"
+import { Button } from "./ui/button"
 
 export default function Search() {
 	const [open, setOpen] = React.useState(false)
@@ -38,14 +40,9 @@ export default function Search() {
 
 	return (
 		<>
-			<div className="flex space-x-2">
-				<span className="text-sm text-muted-foreground ">
-					Press{" "}
-					<kbd className="pointer-events-none inline-flex h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground opacity-100">
-						<span className="text-xs">⌘</span>C
-					</kbd>
-				</span>
-			</div>
+			<Button onClick={() => setOpen(true)} variant="outlined" size="icon" radius="medium">
+				<SearchIcon />
+			</Button>
 			<CommandDialog open={open} onOpenChange={setOpen}>
 				<CommandInput placeholder="Type a command or search..." />
 				<CommandList>
