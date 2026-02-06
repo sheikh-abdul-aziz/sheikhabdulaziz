@@ -1,10 +1,10 @@
 import "./globals.css";
-import React from "react";
+import React, { ReactNode } from "react";
 import { Host_Grotesk, Poppins } from "next/font/google";
-import { ThemeProvider } from "@/components/ui/theme-provider";
 import Footer from "@/components/footer";
 import Header from "@/components/header";
 import { Floating_Dock } from "@/components/floating-dock";
+import { ThemeProvider } from "@/components/ui/theme-provider";
 
 export const fontLabel = Poppins({
 	subsets: ["latin"],
@@ -21,15 +21,15 @@ export const fontDisplay = Host_Grotesk({
 });
 
 export const metadata = {
-	title: "Entrepreneur Aziz",
+	title: "Sheikh Abdul Aziz",
 	description: "Hi, I&apos;m Sheikh Abdul Aziz — An Entrepreneur, Frontend Developer & Web Designer — helping businesses grow with elegant design and powerful development."
 };
 
-export default function RootLayout({children,}: {children: React.ReactNode;}) {
+export default function RootLayout({children,}: {children: ReactNode;}) {
 	return (
 		<html lang="en" suppressHydrationWarning suppressContentEditableWarning>
 			<body className={`${fontDisplay.className} antialiased `}>
-				<ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
+				<ThemeProvider attribute="class" storageKey="theme" defaultTheme="system" enableSystem disableTransitionOnChange>
 					<Header />
 					{children}
 					<Floating_Dock />

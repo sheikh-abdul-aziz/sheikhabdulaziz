@@ -1,8 +1,8 @@
 {
-  "name": "entrepreneuraziz",
+  "name": "sheikhabdulaziz",
   "version": "1.0.0",
   "private": true,
-  "packageManager": "pnpm@10.10.0",
+  "packageManager": "pnpm@10.17.0",
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",

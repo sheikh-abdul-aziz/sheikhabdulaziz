@@ -11,6 +11,7 @@ import { Separator } from "./ui/separator";
 import { ThemeChanger } from "./theme-changer";
 
 const Header = () => {
+    
     const router = useRouter();
 
     const navigateHome = () => {
@@ -32,18 +33,18 @@ const Header = () => {
                     </div>
 
                     {/* Vertical Divider */}
-                    <div className="hidden lg:flex w-auto h-4">
+                    <div className="hidden lg:flex w-auto h-5">
                         <Separator orientation="vertical" />
                     </div>
 
                     {/* Search and Notifications */}
                     <Search />
-                    <Button variant="outlined" size="icon">
+                    <Button variant="outlined" size="icon" radius="large">
                         <Bell />
                     </Button>
 
                     {/* Vertical Divider */}
-                    <div className="flex lg:hidden w-auto h-4">
+                    <div className="flex lg:hidden w-auto h-5">
                         <Separator orientation="vertical" />
                     </div>
 

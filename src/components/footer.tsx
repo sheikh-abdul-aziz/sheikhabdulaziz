@@ -6,7 +6,7 @@ import Link from "next/link";
 export default function Footer() {
     const links = [
         {
-            href: "https://entrepreneuraziz.com",
+            href: "https://sheikhabdulaziz.com",
             text: "Sheikh Abdul Aziz",
         },
         {

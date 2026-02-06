@@ -1,72 +1,73 @@
-"use client"
+"use client";
 
-import * as React from "react";
+import React, { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
-
-import { Button } from "@/components/ui/button";
+import { Button } from "./ui/button";
 import {
     DropdownMenu,
     DropdownMenuContent,
     DropdownMenuItem,
     DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { IconDevices, IconMoonStars, IconSun } from "@tabler/icons-react";
+} from "./ui/dropdown-menu";
+import {
+    IconDevices,
+    IconMoonStars,
+    IconSun
+} from "@tabler/icons-react";
 
-// ThemeChanger component provides a dropdown for switching between light, dark, and system themes.
 export function ThemeChanger() {
-    // Destructure theme management functions and values from next-themes.
-    const { setTheme, resolvedTheme, theme } = useTheme()
 
-    // Returns the appropriate icon based on the current theme.
-    const getIcon = () => {
-        if (theme === "system") return <IconDevices className="h-[1.2rem] w-[1.2rem]" />
-        if (resolvedTheme === "dark") return <IconMoonStars className="h-[1.2rem] w-[1.2rem]" />
-        return <IconSun className="h-[1.2rem] w-[1.2rem]" />
-    }
+    const { setTheme, resolvedTheme, theme } = useTheme();
+
+    useEffect(() => {
+        const savedTheme = typeof window !== "undefined" ? localStorage.getItem("theme") : null;
+        if (savedTheme && savedTheme !== theme) {
+            setTheme(savedTheme);
+        }
+    }, [setTheme, theme]);
+
+    const [Icon, setIcon] = useState(() => IconDevices);
+
+    useEffect(() => {
+        if (resolvedTheme === "light" && theme !== "system") {
+            setIcon(() => IconSun);
+        } else if (resolvedTheme === "dark" && theme !== "system") {
+            setIcon(() => IconMoonStars);
+        } else if (theme === "system") {
+            setIcon(() => IconDevices);
+        } else {
+            setIcon(() => IconDevices);
+        }
+    }, [resolvedTheme, theme]);
 
     return (
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
-                <Button variant="outlined" size="icon">
-                    {getIcon()}
+                <Button variant="outlined" size="icon" radius="large">
+                    <Icon />
                     <span className="sr-only">Toggle theme</span>
                 </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
+            <DropdownMenuContent align="end" defaultValue={theme}>
                 <DropdownMenuItem
                     onClick={() => setTheme("light")}
                     aria-label="Light Theme"
                     aria-checked={resolvedTheme === "light" && theme !== "system"}
-                    className={
-                        resolvedTheme === "light" && theme !== "system"
-                            ? "font-medium bg-muted/70 text-foreground"
-                            : ""
-                    }
-                >
+                    className={resolvedTheme === "light" && theme !== "system" ? "font-medium bg-muted/70 text-foreground" : ""}>
                     <IconSun className="mr-2 h-4 w-4" /> Light
                 </DropdownMenuItem>
                 <DropdownMenuItem
                     onClick={() => setTheme("dark")}
                     aria-label="Dark Theme"
                     aria-checked={resolvedTheme === "dark" && theme !== "system"}
-                    className={
-                        resolvedTheme === "dark" && theme !== "system"
-                            ? "font-medium bg-muted/70 text-foreground"
-                            : ""
-                    }
-                >
+                    className={resolvedTheme === "dark" && theme !== "system" ? "font-medium bg-muted/70 text-foreground" : ""}>
                     <IconMoonStars className="mr-2 h-4 w-4" /> Dark
                 </DropdownMenuItem>
                 <DropdownMenuItem
                     onClick={() => setTheme("system")}
                     aria-label="System Theme"
                     aria-checked={theme === "system"}
-                    className={
-                        theme === "system"
-                            ? "font-medium bg-muted/70 text-foreground"
-                            : ""
-                    }
-                >
+                    className={theme === "system" ? "font-medium bg-muted/70 text-foreground" : ""}>
                     <IconDevices className="mr-2 h-4 w-4" /> System
                 </DropdownMenuItem>
             </DropdownMenuContent>

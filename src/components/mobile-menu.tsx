@@ -13,19 +13,19 @@ import { Label } from "./ui/label";
 
 const data = {
     user: {
-        name: "Entrepreneur Aziz",
+        name: "Sheikh Abdul Aziz",
         title: "Entrepreneur | Developer | Designer",
         description: "I am a passionate entrepreneur, developer, and designer with a keen interest in creating innovative solutions that make a difference.",
-        website: "https://entrepreneuraziz.com",
+    website: "https://sheikhabdulaziz.com",
         github: "https://girhub.com/sheikh-abdul-aziz",
         x: "https://x.com/@ShekhAbdulAzeez",
         dribbble: "#",
         behance: "#",
         instagram: "https://www.instagram.com/shaykhabdulazeez/",
-        email: "info@entrepreneuraziz.com",
+    email: "info@sheikhabdulaziz.com",
         avatar: "htpps://github.com/sheikh-abdul-aziz.png",
         avatarFallback: "SA",
-        avatarAlt: "Entrepreneur Aziz",
+        avatarAlt: "Sheikh Abdul Aziz",
     },
     navigationMenu: [
         {
@@ -160,10 +160,10 @@ export default function MobileMenu() {
             </Button>
             <motion.div className="flex flex-col fixed z-20 left-0 right-0 top-16 bottom-0 h-[100dvh] w-screen bg-background text-foreground px-4 py-6 gap-y-3 overflow-y-auto" initial={{ x: "-100%" }} animate={{ x: isOpen ? "0%" : "-100%" }} transition={{ duration: 0 }}>
                 <div className="flex flex-col items-center justify-between gap-y-4">
-                    <Button onClick={() => navigateTo("/signup")} variant="filled" size="wide" align="center">
+                    <Button onClick={() => navigateTo("/signup")} variant="filled" size="wide" position="center">
                         Signup
                     </Button>
-                    <Button onClick={() => navigateTo("/login")} variant="outlined" size="wide" align="center">
+                    <Button onClick={() => navigateTo("/login")} variant="outlined" size="wide" position="center">
                         Login
                     </Button>
                 </div>

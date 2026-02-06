@@ -1,7 +1,7 @@
 import React from "react";
-import Hero from "../components/hero";
-import FeaturedProjects from "../components/featured-projects";
-import RecentProjects from "../components/recent-projects";
+import Hero from "@/components/hero";
+import FeaturedProjects from "@/components/featured-projects";
+import RecentProjects from "@/components/recent-projects";
 
 export default function Home() {
 	return (
